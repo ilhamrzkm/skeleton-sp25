@@ -81,4 +81,35 @@ public class LinkedListDeque61BTest {
         lld1.addFirst(1);
         assertThat(lld1.size()).isEqualTo(1);
     }
+
+    @Test
+    public void testGet() {
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+        lld1.addLast(0);   // [0]
+        lld1.addLast(1);   // [0, 1]
+        lld1.addFirst(-1); // [-1, 0, 1]
+        lld1.addLast(2);   // [-1, 0, 1, 2]
+        lld1.addFirst(-2); // [-2, -1, 0, 1, 2]
+
+        assertThat(lld1.get(2)).isEqualTo(0);
+
+        assertThat(lld1.get(28723)).isEqualTo(null);
+    }
+
+    @Test
+    public void testGetRecursive() {
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+        assertThat(lld1.getRecursive(0)).isEqualTo(null);
+        lld1.addLast(0);   // [0]
+        lld1.addLast(1);   // [0, 1]
+        lld1.addFirst(-1); // [-1, 0, 1]
+        lld1.addLast(2);   // [-1, 0, 1, 2]
+        lld1.addFirst(-2); // [-2, -1, 0, 1, 2]
+
+        assertThat(lld1.getRecursive(2)).isEqualTo(0);
+
+        assertThat(lld1.getRecursive(28723)).isEqualTo(null);
+    }
 }
